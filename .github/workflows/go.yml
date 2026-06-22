@@ -28,6 +28,15 @@ jobs:
     - name: Create-DB
       run: docker compose up -d
 
+    - name: Wait-DB
+      run: sleep 30  
+
+    - name: Show-Containers
+      run: docker ps -a
+      
+    - name: Show-DB-Logs
+      run: docker compose logs postgres
+
     - name: Test
       run: go test -v main_test.go 
       
