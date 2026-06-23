@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
-        os: ['ubuntu-latest', 'ubuntu-18.04']
+        os: ['ubuntu-latest', 'ubuntu-24.04']
     steps:
     - uses: actions/checkout@v3
 
@@ -29,13 +29,7 @@ jobs:
       run: docker compose up -d
 
     - name: Wait-DB
-      run: sleep 30  
-
-    - name: Show-Containers
-      run: docker ps -a
-      
-    - name: Show-DB-Logs
-      run: docker compose logs postgres
+      run: sleep 10  
 
     - name: Test
       run: go test -v main_test.go 
@@ -46,7 +40,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'ubuntu-18.04']
+        os: ['ubuntu-latest', 'ubuntu-24.04']
     steps:
     - uses: actions/checkout@v3
     - name: Build
