@@ -38,19 +38,21 @@ jobs:
       run: sleep 10  
 
     - name: Test
-      run: go test -v main_test.go 
-      
+      run: go test -v main_test.go     
   
   build:
     needs: test
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['ubuntu-latest', 'ubuntu-24.04']
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Build
       run: go build -v main.go
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v7.0.1
+      with:
+        name: programa
+        path: 
 
   docker:
     needs: build
