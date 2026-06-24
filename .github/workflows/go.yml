@@ -52,7 +52,7 @@ jobs:
       uses: actions/upload-artifact@v7.0.1
       with:
         name: programa
-        path: 
+        path: main
 
   docker:
     needs: build
